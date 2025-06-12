@@ -1,4 +1,5 @@
 import logging
+import strings
 
 from meshtastic import BROADCAST_NUM
 
@@ -15,10 +16,10 @@ from js8call_integration import handle_js8call_command, handle_js8call_steps, ha
 from utils import get_user_state, get_node_short_name, get_node_id_from_num, send_message
 
 main_menu_handlers = {
-    "q": handle_quick_help_command,
-    "b": lambda sender_id, interface: handle_help_command(sender_id, interface, 'bbs'),
-    "u": lambda sender_id, interface: handle_help_command(sender_id, interface, 'utilities'),
-    "x": handle_help_command
+    strings.q : handle_quick_help_command,
+    strings.b : lambda sender_id, interface: handle_help_command(sender_id, interface, 'bbs'),
+    strings.u : lambda sender_id, interface: handle_help_command(sender_id, interface, 'utilities'),
+    strings.x: handle_help_command
 }
 
 bbs_menu_handlers = {

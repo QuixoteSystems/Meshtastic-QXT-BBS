@@ -3,6 +3,8 @@ import logging
 import random
 import time
 
+import strings
+
 from meshtastic import BROADCAST_NUM
 
 from db_operations import (
@@ -29,42 +31,42 @@ utilities_menu_items = config['menu']['utilities_menu_items'].split(',')
 def build_menu(items, menu_name):
     menu_str = f"{menu_name}\n"
     for item in items:
-        if item.strip() == 'Q':
-            menu_str += "[Q]uick Commands\n"
-        elif item.strip() == 'B':
-            if menu_name == "📰BBS Menu📰":
-                menu_str += "[B]ulletins\n"
+        if item.strip() == strings.Q:
+            menu_str += f"{strings.QUICK_COMMANDS}\n"
+        elif item.strip() == strings.B:
+            if menu_name == strings.BBS_MENU:
+                menu_str += f"{strings.BULLETIN}\n"
             else:
-                menu_str += "[B]BS\n"
-        elif item.strip() == 'U':
-            menu_str += "[U]tilities\n"
-        elif item.strip() == 'X':
-            menu_str += "E[X]IT\n"
-        elif item.strip() == 'M':
-            menu_str += "[M]ail\n"
-        elif item.strip() == 'C':
-            menu_str += "[C]hannel Dir\n"
-        elif item.strip() == 'J':
-            menu_str += "[J]S8CALL\n"
-        elif item.strip() == 'S':
-            menu_str += "[S]tats\n"
-        elif item.strip() == 'F':
-            menu_str += "[F]ortune\n"
-        elif item.strip() == 'W':
-            menu_str += "[W]all of Shame\n"
+                menu_str += f"{strings.BBS}\n"
+        elif item.strip() == strings.U:
+            menu_str += f"{strings.UTILITIES}\n"
+        elif item.strip() == strings.X:
+            menu_str += f"{strings.EXIT}\n"
+        elif item.strip() == strings.M:
+            menu_str += f"{strings.MAIL}\n"
+        elif item.strip() == strings.C:
+            menu_str += f"{strings.CHANNEL_DIR}\n"
+        elif item.strip() == strings.J:
+            menu_str += f"{strings.JS8CALL}\n"
+        elif item.strip() == strings.S:
+            menu_str += f"{strings.STATS}\n"
+        elif item.strip() == strings.F:
+            menu_str += f"{strings.FORTUNE}\n"
+        elif item.strip() == strings.W:
+            menu_str += f"{strings.WALL}\n"
     return menu_str
 
 def handle_help_command(sender_id, interface, menu_name=None):
     if menu_name:
         update_user_state(sender_id, {'command': 'MENU', 'menu': menu_name, 'step': 1})
         if menu_name == 'bbs':
-            response = build_menu(bbs_menu_items, "📰BBS Menu📰")
+            response = build_menu(bbs_menu_items, strings.BBS_MENU)
         elif menu_name == 'utilities':
-            response = build_menu(utilities_menu_items, "🛠️Utilities Menu🛠️")
+            response = build_menu(utilities_menu_items, strings.UTILITIES_MENU)
     else:
         update_user_state(sender_id, {'command': 'MAIN_MENU', 'step': 1})  # Reset to main menu state
         mail = get_mail(get_node_id_from_num(sender_id, interface))
-        response = build_menu(main_menu_items, f"💾TC² BBS💾 (✉️:{len(mail)})")
+        response = build_menu(main_menu_items, f"{strings.BBS_NAME} \n({strings.MAILS} {len(mail)})")
     send_message(response, sender_id, interface)
 
 def get_node_name(node_id, interface):
@@ -75,14 +77,14 @@ def get_node_name(node_id, interface):
 
 
 def handle_mail_command(sender_id, interface):
-    response = "✉️Mail Menu✉️\nWhat would you like to do with mail?\n[R]ead  [S]end E[X]IT"
+    response = strings.MAIL_MENU
     send_message(response, sender_id, interface)
     update_user_state(sender_id, {'command': 'MAIL', 'step': 1})
 
 
 
 def handle_bulletin_command(sender_id, interface):
-    response = f"📰Bulletin Menu📰\nWhich board would you like to enter?\n[G]eneral  [I]nfo  [N]ews  [U]rgent"
+    response = strings.BULLETIN_MENU
     send_message(response, sender_id, interface)
     update_user_state(sender_id, {'command': 'BULLETIN_MENU', 'step': 1})
 
@@ -93,7 +95,7 @@ def handle_exit_command(sender_id, interface):
 
 
 def handle_stats_command(sender_id, interface):
-    response = "📊Stats Menu📊\nWhat stats would you like to view?\n[N]odes  [H]ardware  [R]oles  E[X]IT"
+    response = strings.STATS_MENU
     send_message(response, sender_id, interface)
     update_user_state(sender_id, {'command': 'STATS', 'step': 1})
 
@@ -103,7 +105,7 @@ def handle_fortune_command(sender_id, interface):
         with open('fortunes.txt', 'r') as file:
             fortunes = file.readlines()
         if not fortunes:
-            send_message("No fortunes available.", sender_id, interface)
+            send_message(strings.NO_FORTUNES, sender_id, interface)
             return
         fortune = random.choice(fortunes).strip()
         decorated_fortune = f"🔮 {fortune} 🔮"
@@ -662,6 +664,5 @@ def handle_list_channels_command(sender_id, interface):
 
 
 def handle_quick_help_command(sender_id, interface):
-    response = ("✈️QUICK COMMANDS✈️\nSend command below for usage info:\nSM,, - Send "
-                "Mail\nCM - Check Mail\nPB,, - Post Bulletin\nCB,, - Check Bulletins\n")
+    response = strings.QUICK_COMMANDS_MENU
     send_message(response, sender_id, interface)

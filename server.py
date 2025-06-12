@@ -20,6 +20,8 @@ from db_operations import initialize_database
 from js8call_integration import JS8CallClient
 from message_processing import on_receive
 from pubsub import pub
+import strings
+
 
 # General logging
 logging.basicConfig(
@@ -39,13 +41,16 @@ js8call_logger.addHandler(js8call_handler)
 
 def display_banner():
     banner = """
-████████╗ ██████╗██████╗       ██████╗ ██████╗ ███████╗
-╚══██╔══╝██╔════╝╚════██╗      ██╔══██╗██╔══██╗██╔════╝
-   ██║   ██║      █████╔╝█████╗██████╔╝██████╔╝███████╗
-   ██║   ██║     ██╔═══╝ ╚════╝██╔══██╗██╔══██╗╚════██║
-   ██║   ╚██████╗███████╗      ██████╔╝██████╔╝███████║
-   ╚═╝    ╚═════╝╚══════╝      ╚═════╝ ╚═════╝ ╚══════╝
-Meshtastic Version
+    ██████    █████ █████ ███████████    ███████████  ███████████   █████████ 
+  ███░░░░███ ░░███ ░░███ ░█░░░███░░░█   ░░███░░░░░███░░███░░░░░███ ███░░░░░███
+ ███    ░░███ ░░███ ███  ░   ░███  ░     ░███    ░███ ░███    ░███░███    ░░░ 
+░███     ░███  ░░█████       ░███        ░██████████  ░██████████ ░░█████████ 
+░███   ██░███   ███░███      ░███        ░███░░░░░███ ░███░░░░░███ ░░░░░░░░███
+░░███ ░░████   ███ ░░███     ░███        ░███    ░███ ░███    ░███ ███    ░███
+ ░░░██████░██ █████ █████    █████       ███████████  ███████████ ░░█████████ 
+   ░░░░░░ ░░ ░░░░░ ░░░░░    ░░░░░       ░░░░░░░░░░░  ░░░░░░░░░░░   ░░░░░░░░░  
+                                                                              
+                            Meshtastic Version
 """
     print(banner)
 
@@ -63,7 +68,7 @@ def main():
     interface.bbs_nodes = system_config['bbs_nodes']
     interface.allowed_nodes = system_config['allowed_nodes']
 
-    logging.info(f"TC²-BBS is running on {system_config['interface_type']} interface...")
+    logging.info(f"{strings.RUNNING} {system_config['interface_type']}")
 
     initialize_database()
 
@@ -84,7 +89,7 @@ def main():
             time.sleep(1)
 
     except KeyboardInterrupt:
-        logging.info("Shutting down the server...")
+        logging.info(strings.SHUTTING)
         interface.close()
         if js8call_client.connected:
             js8call_client.close()
