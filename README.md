@@ -1,14 +1,8 @@
-# TC²-BBS Meshtastic Version
+# Meshtastic QXT BBS (Bulletin Board System)
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B1OZ22Z)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M81CV1EX)
 
-This is the TC²-BBS system integrated with Meshtastic devices. The system allows for message handling, bulletin boards, mail systems, and a channel directory.
-
-### Docker
-
-If you're a Docker user, TC²-BBS Meshtastic is available on Docker Hub!
-
-[![Docker HUB](https://icon-icons.com/downloadimage.php?id=151885&root=2530/PNG/128/&file=docker_button_icon_151885.png)](https://hub.docker.com/r/thealhu/tc2-bbs-mesh)
+This BBS is a fork of the TC²-BBS system integrated with Meshtastic devices. The system allows for message handling, bulletin boards, mail systems, allow certains nodes and a channel directory.
 
 ## Setup
 
@@ -32,8 +26,8 @@ If you're a Docker user, TC²-BBS Meshtastic is available on Docker Hub!
    
    ```sh
    cd ~
-   git clone https://github.com/TheCommsChannel/TC2-BBS-mesh.git
-   cd TC2-BBS-mesh
+   git clone https://github.com/QuixoteSystems/Meshtastic-QXT-BBS.git
+   cd Meshtastic-QXT-BBS
    ```
 
 2. Set up a Python virtual environment:  
