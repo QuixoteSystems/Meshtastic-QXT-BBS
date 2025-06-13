@@ -171,7 +171,7 @@ def handle_bb_steps(sender_id, message, step, state, interface, bbs_nodes):
             return
         board_name = boards[int(message)]
         bulletins = get_bulletins(board_name)
-        response = f"{board_name} has {len(bulletins)} messages.\n[R]ead  [P]ost"
+        response = f"{board_name} {strings.HAS} {len(bulletins)} {strings.MESSAGES}.\n[R]ead  [P]ost"
         send_message(response, sender_id, interface)
         update_user_state(sender_id, {'command': 'BULLETIN_ACTION', 'step': 2, 'board': board_name})
 
@@ -180,12 +180,12 @@ def handle_bb_steps(sender_id, message, step, state, interface, bbs_nodes):
         if message.lower() == 'r':
             bulletins = get_bulletins(board_name)
             if bulletins:
-                send_message(f"Select a bulletin number to view from {board_name}:", sender_id, interface)
+                send_message(f"{strings.SELECT_BULLETIN} {board_name}:", sender_id, interface)
                 for bulletin in bulletins:
                     send_message(f"[{bulletin[0]}] {bulletin[1]}", sender_id, interface)
                 update_user_state(sender_id, {'command': 'BULLETIN_READ', 'step': 3, 'board': board_name})
             else:
-                send_message(f"No bulletins in {board_name}.", sender_id, interface)
+                send_message(f"{strings.NO_BULLETIN} {board_name}.", sender_id, interface)
                 handle_bb_steps(sender_id, strings.e, 1, state, interface, bbs_nodes)
         elif message.lower() == strings.p:
             if board_name.lower() == 'urgent':
