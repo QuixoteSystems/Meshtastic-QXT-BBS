@@ -109,13 +109,17 @@ Be sure you've followed the Python virtual environment steps above and activated
 ```
 $ python server.py --help
 
-████████╗ ██████╗██████╗       ██████╗ ██████╗ ███████╗
-╚══██╔══╝██╔════╝╚════██╗      ██╔══██╗██╔══██╗██╔════╝
-   ██║   ██║      █████╔╝█████╗██████╔╝██████╔╝███████╗
-   ██║   ██║     ██╔═══╝ ╚════╝██╔══██╗██╔══██╗╚════██║
-   ██║   ╚██████╗███████╗      ██████╔╝██████╔╝███████║
-   ╚═╝    ╚═════╝╚══════╝      ╚═════╝ ╚═════╝ ╚══════╝
-Meshtastic Version
+
+    ██████    █████ █████ ███████████    ███████████  ███████████   █████████
+  ███░░░░███ ░░███ ░░███ ░█░░░███░░░█   ░░███░░░░░███░░███░░░░░███ ███░░░░░███
+ ███    ░░███ ░░███ ███  ░   ░███  ░     ░███    ░███ ░███    ░███░███    ░░░
+░███     ░███  ░░█████       ░███        ░██████████  ░██████████ ░░█████████
+░███   ██░███   ███░███      ░███        ░███░░░░░███ ░███░░░░░███ ░░░░░░░░███
+░░███ ░░████   ███ ░░███     ░███        ░███    ░███ ░███    ░███ ███    ░███
+ ░░░██████░██ █████ █████    █████       ███████████  ███████████ ░░█████████
+   ░░░░░░ ░░ ░░░░░ ░░░░░    ░░░░░       ░░░░░░░░░░░  ░░░░░░░░░░░   ░░░░░░░░░
+
+                            Meshtastic Version
 
 usage: server.py [-h] [--config CONFIG] [--interface-type {serial,tcp}] [--port PORT] [--host HOST] [--mqtt-topic MQTT_TOPIC]
 
@@ -146,7 +150,7 @@ If you would like to have the script automatically run at boot, follow the steps
    ```sh
    User=pi
    WorkingDirectory=/home/pi/TC2-BBS-mesh
-   ExecStart=/home/pi/TC2-BBS-mesh/venv/bin/python3 /home/pi/TC2-BBS-mesh/server.py
+   ExecStart=/home/pi/Meshtastic-QXT-BBS/venv/bin/python3 /home/pi/Meshtastic-QXT-BBS/server.py
    ```
    
    The file is currently setup for a user named 'pi' and assumes that the TC2-BBS-mesh directory is located in the home directory (which it should be if the earlier directions were followed)
@@ -155,7 +159,7 @@ If you would like to have the script automatically run at boot, follow the steps
 
 2. **Configuring systemd**
    
-   From the TC2-BBS-mesh directory, run the following commands:
+   From the Meshtastic-QXT-BBS directory, run the following commands:
    
    ```sh
    sudo cp mesh-bbs.service /etc/systemd/system/
