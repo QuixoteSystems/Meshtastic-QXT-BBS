@@ -5,6 +5,8 @@ import sqlite3
 import configparser
 import logging
 
+import strings
+
 from meshtastic import BROADCAST_NUM
 
 from command_handlers import handle_help_command
@@ -236,7 +238,7 @@ def handle_js8call_steps(sender_id, message, step, interface, state):
         elif choice == 'u':
             handle_urgent_messages_command(sender_id, interface)
         else:
-            send_message("Invalid option. Please choose again.", sender_id, interface)
+            send_message(strings.INVALID_OPTION, sender_id, interface)
             handle_js8call_command(sender_id, interface)
 
 

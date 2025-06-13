@@ -67,7 +67,7 @@ MAIL_MENU = ":: Menu Mail ::\nQue te gustaria hacer?\n[R]ead\n  [S]end\n  E[X]it
 #BULLETIN_MENU = "📰Bulletin Menu📰\nWhich board would you like to enter?\n[G]eneral  [I]nfo  [N]ews  [U]rgent"
 BULLETIN_MENU = ":: Menu Boletines ::\nA que Boletin quieres entrar?\n[G]eneral\n  [I]nfo\n  [N]oticias\n  [U]rgente"
 #STATS_MENU = "📊Stats Menu📊\nWhat stats would you like to view?\n[N]odes  [H]ardware  [R]oles  E[X]IT"
-STATS_MENU = ":: Menu de Datos ::\n\nQue datos quieres ver?\n[N]odos\n  [H]ardware\n  [R]oles\n  ]S]alir"
+STATS_MENU = ":: Menu de Datos ::\n\nQue datos quieres ver?\n [N]odos\n  [H]ardware\n  [R]oles\n  [S]alir"
 #NO_FORTUNES = "No fortunes available."
 NO_FORTUNES = "No hay frases celebres disponibles"
 #TOTAL_NODES = "Total nodes seen: "
@@ -138,7 +138,7 @@ YOUR_BULLETIN_2 = " ha sido publicado en "
 #FORMAT_BULLETIN = "Post Bulletin Quick Command format:\nPB,,{board_name},,{subject},,{content}"
 FORMAT_BULLETIN = "Formato de Comando para Publicar Boletin:\nPB,,{Nombre_Boletin},,{Asunto},,{Texto}"
 #CHECK_BULLETIN = "Check Bulletins Quick Command format:\nCB,,{board_name}"
-CHECK_BULLETIN = "Formato de Comando para Chequear Boletin:\nCB,,{Nombre_Boletib}"
+CHECK_BULLETIN = "Formato de Comando para Chequear Boletin:\nCB,,{Nombre_Boletin}"
 #NO_BULLETIN = "No bulletins available on board: "
 NO_BULLETIN = "No hay boletines disponibles en: "
 #BULLETIN_NUM = "\nPlease reply with the number of the bulletin you want to read."
@@ -242,3 +242,11 @@ INVALID_CHANNEL = "Numero de Canal invalido. Intentalo de nuevo."
 LOW_BATT = "Nodos con nivel de bateria inferior al 20%:\n"
 #NO_LOW = "No devices with battery levels below 20% found."
 NO_LOW = "No hay Nodos con nivel de bateria inferior al 20%"
+
+
+###########
+# JS8Call #
+###########
+
+#INVALID_OPTION = "Invalid option. Please choose again."
+INVALID_OPTION = "Opcion invalida. Elige otra opcion."
