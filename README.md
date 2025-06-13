@@ -2,7 +2,8 @@
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M81CV1EX)
 
-This BBS is a fork of the TC²-BBS system integrated with Meshtastic devices. The system allows for message handling, bulletin boards, mail systems, allow certains nodes and a channel directory.
+This BBS is a fork of the TC²-BBS system integrated with Meshtastic devices. The system allows for message handling, bulletin boards, mail systems, allow certains nodes and a channel directory. This version also allows translating the menus into another language without modifying the code—just by changing the text strings in `strings.py`.
+
 
 ## Setup
 
@@ -109,13 +110,17 @@ Be sure you've followed the Python virtual environment steps above and activated
 ```
 $ python server.py --help
 
-████████╗ ██████╗██████╗       ██████╗ ██████╗ ███████╗
-╚══██╔══╝██╔════╝╚════██╗      ██╔══██╗██╔══██╗██╔════╝
-   ██║   ██║      █████╔╝█████╗██████╔╝██████╔╝███████╗
-   ██║   ██║     ██╔═══╝ ╚════╝██╔══██╗██╔══██╗╚════██║
-   ██║   ╚██████╗███████╗      ██████╔╝██████╔╝███████║
-   ╚═╝    ╚═════╝╚══════╝      ╚═════╝ ╚═════╝ ╚══════╝
-Meshtastic Version
+
+    ██████    █████ █████ ███████████    ███████████  ███████████   █████████
+  ███░░░░███ ░░███ ░░███ ░█░░░███░░░█   ░░███░░░░░███░░███░░░░░███ ███░░░░░███
+ ███    ░░███ ░░███ ███  ░   ░███  ░     ░███    ░███ ░███    ░███░███    ░░░
+░███     ░███  ░░█████       ░███        ░██████████  ░██████████ ░░█████████
+░███   ██░███   ███░███      ░███        ░███░░░░░███ ░███░░░░░███ ░░░░░░░░███
+░░███ ░░████   ███ ░░███     ░███        ░███    ░███ ░███    ░███ ███    ░███
+ ░░░██████░██ █████ █████    █████       ███████████  ███████████ ░░█████████
+   ░░░░░░ ░░ ░░░░░ ░░░░░    ░░░░░       ░░░░░░░░░░░  ░░░░░░░░░░░   ░░░░░░░░░
+
+                            Meshtastic Version
 
 usage: server.py [-h] [--config CONFIG] [--interface-type {serial,tcp}] [--port PORT] [--host HOST] [--mqtt-topic MQTT_TOPIC]
 
@@ -142,61 +147,62 @@ If you would like to have the script automatically run at boot, follow the steps
 1. **Edit the service file**
    
    First, edit the mesh-bbs.service file using your preferred text editor. The 3 following lines in that file are what we need to edit:
+
    
    ```sh
    User=pi
-   WorkingDirectory=/home/pi/TC2-BBS-mesh
-   ExecStart=/home/pi/TC2-BBS-mesh/venv/bin/python3 /home/pi/TC2-BBS-mesh/server.py
+   WorkingDirectory=/home/pi/Meshtastic-QXT-BBS
+   ExecStart=/home/pi/Meshtastic-QXT-BBS/venv/bin/python3 /home/pi/Meshtastic-QXT-BBS/server.py
    ```
    
-   The file is currently setup for a user named 'pi' and assumes that the TC2-BBS-mesh directory is located in the home directory (which it should be if the earlier directions were followed)
+   The file is currently setup for a user named 'pi' and assumes that the Meshtastic-QXT-BBS directory is located in the home directory (which it should be if the earlier directions were followed)
    
-   We just need to replace the 4 parts that have "pi" in those 3 lines with your username.
+   *We just need to replace the 4 parts that have "pi" in those 3 lines with your username.*
 
-2. **Configuring systemd**
+3. **Configuring systemd**
    
-   From the TC2-BBS-mesh directory, run the following commands:
+   From the Meshtastic-QXT-BBS directory, run the following commands:
    
    ```sh
-   sudo cp mesh-bbs.service /etc/systemd/system/
+   sudo cp qxt-bbs.service /etc/systemd/system/
    ```
    
    ```sh
-   sudo systemctl enable mesh-bbs.service
+   sudo systemctl enable qxt-bbs.service
    ```
    
    ```sh
-   sudo systemctl start mesh-bbs.service
+   sudo systemctl start qxt-bbs.service
    ```
    
    The service should be started now and should start anytime your device is powered on or rebooted. You can check the status of the service by running the following command:
    
    ```sh
-   sudo systemctl status mesh-bbs.service
+   sudo systemctl status qxt-bbs.service
    ```
    
    If you need to stop the service, you can run the following:
    
    ```sh
-   sudo systemctl stop mesh-bbs.service
+   sudo systemctl stop qxt-bbs.service
    ```
    
    If you need to restart the service, you can do so with the following command:
    
    ```sh
-   sudo systemctl restart mesh-bbs.service
+   sudo systemctl restart qxt-bbs.service
    ```
 
 2. **Viewing Logs**
 
    Viewing past logs:
    ```sh
-   journalctl -u mesh-bbs.service
+   journalctl -u qxt-bbs.service
    ```
 
    Viewing live logs:
    ```sh
-   journalctl -u mesh-bbs.service -f
+   journalctl -u qxt-bbs.service -f
    ```
 
 ## Radio Configuration
