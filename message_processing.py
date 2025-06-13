@@ -19,23 +19,23 @@ main_menu_handlers = {
     strings.q : handle_quick_help_command,
     strings.b : lambda sender_id, interface: handle_help_command(sender_id, interface, 'bbs'),
     strings.u : lambda sender_id, interface: handle_help_command(sender_id, interface, 'utilities'),
-    strings.x: handle_help_command
+    strings.x : handle_help_command
 }
 
 bbs_menu_handlers = {
-    "m": handle_mail_command,
-    "b": handle_bulletin_command,
-    "c": handle_channel_directory_command,
-    "j": handle_js8call_command,
-    "x": handle_help_command
+    strings.m : handle_mail_command,
+    strings.b : handle_bulletin_command,
+    strings.c : handle_channel_directory_command,
+    strings.j : handle_js8call_command,
+    strings.x : handle_help_command
 }
 
 
 utilities_menu_handlers = {
-    "s": handle_stats_command,
-    "f": handle_fortune_command,
-    "w": handle_wall_of_shame_command,
-    "x": handle_help_command
+    strings.s : handle_stats_command,
+    strings.f : handle_fortune_command,
+    strings.w : handle_wall_of_shame_command,
+    strings.x : handle_help_command
 }
 
 
@@ -44,14 +44,14 @@ bulletin_menu_handlers = {
     "i": lambda sender_id, interface: handle_bb_steps(sender_id, '1', 1, {'board': 'Info'}, interface, None),
     "n": lambda sender_id, interface: handle_bb_steps(sender_id, '2', 1, {'board': 'News'}, interface, None),
     "u": lambda sender_id, interface: handle_bb_steps(sender_id, '3', 1, {'board': 'Urgent'}, interface, None),
-    "x": handle_help_command
+    strings.x : handle_help_command
 }
 
 
 board_action_handlers = {
     "r": lambda sender_id, interface, state: handle_bb_steps(sender_id, 'r', 2, state, interface, None),
     "p": lambda sender_id, interface, state: handle_bb_steps(sender_id, 'p', 2, state, interface, None),
-    "x": handle_help_command
+    strings.x : handle_help_command
 }
 
 def process_message(sender_id, message, interface, is_sync_message=False):
@@ -62,7 +62,7 @@ def process_message(sender_id, message, interface, is_sync_message=False):
     bbs_nodes = interface.bbs_nodes
 
     # Handle repeated characters for single character commands using a prefix
-    if len(message_lower) == 2 and message_lower[1] == 'x':
+    if len(message_lower) == 2 and message_lower[1] == strings.x:
         message_lower = message_lower[0]
 
     if is_sync_message:
@@ -91,15 +91,15 @@ def process_message(sender_id, message, interface, is_sync_message=False):
             channel_name, channel_url = parts[1], parts[2]
             add_channel(channel_name, channel_url)
     else:
-        if message_lower.startswith("sm,,"):
+        if message_lower.startswith(f"{strings.sm}"):
             handle_send_mail_command(sender_id, message_strip, interface, bbs_nodes)
-        elif message_lower.startswith("cm"):
+        elif message_lower.startswith(f"{strings.cm}"):
             handle_check_mail_command(sender_id, interface)
-        elif message_lower.startswith("pb,,"):
+        elif message_lower.startswith(f"{strings.pb}"):
             handle_post_bulletin_command(sender_id, message_strip, interface, bbs_nodes)
-        elif message_lower.startswith("cb,,"):
+        elif message_lower.startswith("cb"):
             handle_check_bulletin_command(sender_id, message_strip, interface)
-        elif message_lower.startswith("chp,,"):
+        elif message_lower.startswith("chp"):
             handle_post_channel_command(sender_id, message_strip, interface)
         elif message_lower.startswith("chl"):
             handle_list_channels_command(sender_id, interface)
@@ -125,7 +125,7 @@ def process_message(sender_id, message, interface, is_sync_message=False):
             else:
                 handlers = main_menu_handlers
 
-            if message_lower == 'x':
+            if message_lower == strings.x:
                 # Reset to main menu state
                 handle_help_command(sender_id, interface)
                 return
