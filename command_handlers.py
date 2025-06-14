@@ -452,7 +452,7 @@ def handle_check_mail_command(sender_id, interface):
 
         response = strings.FOLLOWING_MSG
         for i, msg in enumerate(mail):
-            response += f"{i + 1:02d}. From: {msg[1]}, Subject: {msg[2]}\n"
+            response += f"{i + 1:02d}. {strings.FROM} {msg[1]}, {strings.SUBJECT} {msg[2]}\n"
         response += strings.MSG_NUM
         send_message(response, sender_id, interface)
 
@@ -475,7 +475,7 @@ def handle_read_mail_command(sender_id, message, state, interface):
         mail_id = mail[message_number][0]
         sender_node_id = get_node_id_from_num(sender_id, interface)
         sender, date, subject, content, unique_id = get_mail_content(mail_id, sender_node_id)
-        response = f"Date: {date}\nFrom: {sender}\nSubject: {subject}\n\n{content}"
+        response = f"{strings.DATE} {date}\n{strings.FROM} {sender}\n{strings.SUBJECT} {subject}\n\n{content}"
         send_message(response, sender_id, interface)
         send_message(strings.DO_MAIL, sender_id, interface)
         update_user_state(sender_id, {'command': 'CHECK_MAIL', 'step': 2, 'mail_id': mail_id, 'unique_id': unique_id, 'sender': sender, 'subject': subject, 'content': content})
